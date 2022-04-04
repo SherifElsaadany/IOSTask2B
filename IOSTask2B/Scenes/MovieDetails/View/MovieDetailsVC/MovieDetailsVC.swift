@@ -27,7 +27,12 @@ class MovieDetailsVC: UIViewController {
 
 //MARK:- MovieDetailsViewProtocol
 extension MovieDetailsVC: MovieDetailsViewProtocol {
+    
     func setDetails(of movie: MovieDetails) {
         detailsView.updateDetails(of: movie)
+    }
+    
+    func setPhotos(_ photosUrls: [String]) {
+        detailsView.updatePhotos(photosUrls)
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 class MovieDetailsView: UIView, ReusableView {
     
     private var movieDetails: MovieDetails?
+    private var photos: [String]?
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -39,7 +40,7 @@ class MovieDetailsView: UIView, ReusableView {
     }
     
     private func registerCells() {
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(UINib(nibName: PhotoCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: PhotoCell.reuseIdentifier)
         collectionView.register(MovieDetailsHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MovieDetailsHeader.reuseIdentifier)
     }
     
@@ -51,17 +52,24 @@ class MovieDetailsView: UIView, ReusableView {
         self.movieDetails = details
         collectionView.reloadData()
     }
+    
+    func updatePhotos(_ photos: [String]) {
+        self.photos = photos
+        collectionView.reloadData()
+    }
 }
 
 // MARK:- UICollectionViewDataSource, UICollectionViewDelegate
 extension MovieDetailsView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return photos?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCell.reuseIdentifier, for: indexPath) as! PhotoCell
+        let photoUrl = photos?[indexPath.row]
+        cell.configure(photoUrl: photoUrl)
         return cell
         
     }
@@ -77,5 +85,23 @@ extension MovieDetailsView: UICollectionViewDataSource, UICollectionViewDelegate
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: MovieDetailsHeader.reuseIdentifier, for: indexPath) as! MovieDetailsHeader
         header.configureHeader(movieDetails)
         return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.bounds.width / 2
+        let height = width
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        0
     }
 }

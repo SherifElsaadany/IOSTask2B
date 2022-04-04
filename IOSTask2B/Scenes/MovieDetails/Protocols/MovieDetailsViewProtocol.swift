@@ -9,4 +9,5 @@ import Foundation
 
 protocol MovieDetailsViewProtocol: class {
     func setDetails(of movie: MovieDetails)
+    func setPhotos(_ photosUrls: [String])
 }
