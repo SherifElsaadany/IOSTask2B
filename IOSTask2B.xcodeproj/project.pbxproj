@@ -29,6 +29,8 @@
 		5BFAAEC627FA44BB00F8BF84 /* MoviesListPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFAAEC527FA44BB00F8BF84 /* MoviesListPresenterProtocol.swift */; };
 		5BFAAECB27FA45B300F8BF84 /* MoviesListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFAAECA27FA45B300F8BF84 /* MoviesListProtocol.swift */; };
 		5BFAAED327FA51D600F8BF84 /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFAAED227FA51D600F8BF84 /* AppRouter.swift */; };
+		5BFAAEE227FA651C00F8BF84 /* SearchViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFAAEE127FA651C00F8BF84 /* SearchViewDelegate.swift */; };
+		5BFAAEE727FA758100F8BF84 /* MoviesCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFAAEE627FA758100F8BF84 /* MoviesCategories.swift */; };
 		7A46FE5D184BF39E111CD0A5 /* Pods_IOSTask2BTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0EBDB4032A7EB575961596A /* Pods_IOSTask2BTests.framework */; };
 		E2852B51AD2E35046763F738 /* Pods_IOSTask2B.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F9BE49028EF2E19D3C765D /* Pods_IOSTask2B.framework */; };
 /* End PBXBuildFile section */
@@ -80,6 +82,8 @@
 		5BFAAEC527FA44BB00F8BF84 /* MoviesListPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListPresenterProtocol.swift; sourceTree = "<group>"; };
 		5BFAAECA27FA45B300F8BF84 /* MoviesListProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListProtocol.swift; sourceTree = "<group>"; };
 		5BFAAED227FA51D600F8BF84 /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
+		5BFAAEE127FA651C00F8BF84 /* SearchViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewDelegate.swift; sourceTree = "<group>"; };
+		5BFAAEE627FA758100F8BF84 /* MoviesCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesCategories.swift; sourceTree = "<group>"; };
 		6F99520602CC2FDA455AB693 /* Pods_IOSTask2B_IOSTask2BUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IOSTask2B_IOSTask2BUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0EBDB4032A7EB575961596A /* Pods_IOSTask2BTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IOSTask2BTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0957C61ADB5B71253D207F1 /* Pods-IOSTask2B.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IOSTask2B.debug.xcconfig"; path = "Target Support Files/Pods-IOSTask2B/Pods-IOSTask2B.debug.xcconfig"; sourceTree = "<group>"; };
@@ -212,7 +216,7 @@
 				5BFAAEB027FA413600F8BF84 /* Model */,
 				5B72225627FA3D500047504C /* View */,
 				5BFAAEC127FA43FD00F8BF84 /* Presenter */,
-				5BFAAECA27FA45B300F8BF84 /* MoviesListProtocol.swift */,
+				5BFAAEDA27FA64F500F8BF84 /* Protocols */,
 			);
 			path = MoviesList;
 			sourceTree = "<group>";
@@ -258,6 +262,7 @@
 			isa = PBXGroup;
 			children = (
 				5BFAAEAB27FA412B00F8BF84 /* Movies.swift */,
+				5BFAAEE627FA758100F8BF84 /* MoviesCategories.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -266,7 +271,6 @@
 			isa = PBXGroup;
 			children = (
 				5BFAAEBC27FA43F800F8BF84 /* MoviesListPresenter.swift */,
-				5BFAAEC527FA44BB00F8BF84 /* MoviesListPresenterProtocol.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -278,6 +282,16 @@
 				5BFAAEA627FA409700F8BF84 /* LocalDataReader.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		5BFAAEDA27FA64F500F8BF84 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				5BFAAEC527FA44BB00F8BF84 /* MoviesListPresenterProtocol.swift */,
+				5BFAAECA27FA45B300F8BF84 /* MoviesListProtocol.swift */,
+				5BFAAEE127FA651C00F8BF84 /* SearchViewDelegate.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		8381A672F4DF0EB3E134BA44 /* Frameworks */ = {
@@ -512,6 +526,7 @@
 				5B72224D27FA3C1A0047504C /* MoviesListVC.swift in Sources */,
 				5BFAAEB827FA420600F8BF84 /* StorageHandlerProtocol.swift in Sources */,
 				5BFAAEAC27FA412B00F8BF84 /* Movies.swift in Sources */,
+				5BFAAEE727FA758100F8BF84 /* MoviesCategories.swift in Sources */,
 				5BFAAECB27FA45B300F8BF84 /* MoviesListProtocol.swift in Sources */,
 				5B7221E827FA390A0047504C /* MoviesListView.swift in Sources */,
 				5BFAAEC627FA44BB00F8BF84 /* MoviesListPresenterProtocol.swift in Sources */,
@@ -521,6 +536,7 @@
 				5BFAAED327FA51D600F8BF84 /* AppRouter.swift in Sources */,
 				5B72226327FA3DAB0047504C /* SearchBarView.swift in Sources */,
 				5B72219427FA33350047504C /* SceneDelegate.swift in Sources */,
+				5BFAAEE227FA651C00F8BF84 /* SearchViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

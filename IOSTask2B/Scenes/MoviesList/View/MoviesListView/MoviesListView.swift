@@ -10,7 +10,7 @@ import UIKit
 class MoviesListView: UIView, ReusableView {
 
     
-    private var moviesTitles: [String]?
+    private var movies: [MoviesCategories]?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -43,22 +43,31 @@ class MoviesListView: UIView, ReusableView {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
-    func updateList(with titles: [String]) {
-        self.moviesTitles = titles
+    func updateList(with titles: [MoviesCategories]) {
+        self.movies = titles
         self.tableView.reloadData()
     }
 }
 
 //MARK:- UITableViewDataSource, UITableViewDragDelegate
 extension MoviesListView: UITableViewDataSource, UITableViewDelegate {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        movies?.count ?? 0
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        moviesTitles?.count ?? 0
+        movies?[section].movies.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        let title = moviesTitles?[indexPath.row]
-        cell.textLabel?.text = title
+        let movie = movies?[indexPath.section].movies[indexPath.row]
+        cell.textLabel?.text = movie?.title
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        movies?[section].category
     }
 }

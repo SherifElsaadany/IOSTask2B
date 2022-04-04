@@ -8,5 +8,5 @@
 import Foundation
 
 protocol MoviesListProtocol: class {
-    func setRows(with movies: [String])
+    func setRows(with movies: [MoviesCategories])
 }

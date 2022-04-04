@@ -10,5 +10,6 @@ import Foundation
 protocol MoviesListPresenterProtocol: class {
     func onViewDidLoad(view: MoviesListProtocol)
     func onDidSelect(index: Int)
-    func didTapSearch()
+    func didSearch(for text: String)
+    func didCancelSearch()
 }

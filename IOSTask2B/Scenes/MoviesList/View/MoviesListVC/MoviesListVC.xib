@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MoviesListVC" customModule="IOSTask2B" customModuleProvider="target">
             <connections>
                 <outlet property="moviesListView" destination="0xn-hF-cSe" id="sm6-ez-wRN"/>
+                <outlet property="searchView" destination="xhv-tC-gqc" id="Nwd-aV-Jb5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
