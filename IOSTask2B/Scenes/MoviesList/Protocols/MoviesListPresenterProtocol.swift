@@ -9,7 +9,7 @@ import Foundation
 
 protocol MoviesListPresenterProtocol: class {
     func onViewDidLoad(view: MoviesListProtocol)
-    func onDidSelect(index: Int)
+    func onDidSelect(section: Int, index: Int)
     func didSearch(for text: String)
     func didCancelSearch()
 }

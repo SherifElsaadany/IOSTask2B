@@ -18,8 +18,8 @@ class MoviesListVC: UIViewController {
         super.viewDidLoad()
         presenter?.onViewDidLoad(view: self)
         searchView.delegate = self
+        moviesListView.delegate = self
     }
-
 }
 
 //MARK:- MoviesListProtocol
@@ -37,5 +37,12 @@ extension MoviesListVC: SearchViewDelegate {
     
     func textDidChange(to text: String) {
         presenter?.didSearch(for: text)
+    }
+}
+
+//MARK:- MoviesListDelegate
+extension MoviesListVC: MoviesListDelegate {
+    func didSelect(_ indexPath: IndexPath) {
+        presenter?.onDidSelect(section: indexPath.section, index: indexPath.row)
     }
 }

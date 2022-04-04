@@ -10,18 +10,26 @@ import Foundation
 class MoviesListPresenter {
     
     weak var view: MoviesListProtocol?
-    private var fetchedMovies: Movies?
     private var storage: StorageHandlerProtocol
     private var allMovies: [MoviesCategories]?
-    private var sortedResult: [MoviesCategories]?
+    private var displayedMovies: [MoviesCategories]?
+    private let router: MoviesListRoutingProtocol
     
-    init(storage: StorageHandlerProtocol) {
+    init(storage: StorageHandlerProtocol, router: MoviesListRoutingProtocol) {
         self.storage = storage
+        self.router = router
+    }
+    
+    private func getMovies() -> MoviesCategories? {
+        // get movies from local data file and map it to MoviesCategories
+        guard let movies = storage.getMovies()?.movies else {return nil}
+        let allMovies = MoviesCategories(category: "All", movies: movies)
+        return allMovies
     }
     
     private func findMovies(contains text: String) -> [Movie]? {
         // filter fetched movies which its titles contains search text
-        let result = fetchedMovies?.movies?.filter({
+        let result = allMovies?.first?.movies.filter({
             let title = $0.title?.lowercased() ?? ""
             return title.contains(text.lowercased())
         })
@@ -40,15 +48,14 @@ class MoviesListPresenter {
         let sortedMovies = moviesDict.map({
             MoviesCategories(category: "\($0.key ?? 0)", movies: Array($0.value.prefix(5)))
         }).sorted(by: {(Int($0.category) ?? 0) > (Int($1.category) ?? 0)})
-        self.sortedResult = sortedMovies
         return sortedMovies
     }
     
-    private func sendViewData(_ movies: Movies?) {
-        guard let movies = movies?.movies else {return}
-        let allMovies = MoviesCategories(category: "All", movies: movies)
-        self.allMovies = [allMovies]
-        view?.setRows(with: [allMovies])
+    private func sendViewData(_ movies: MoviesCategories) {
+        self.allMovies = [movies]
+        self.displayedMovies = [movies]
+        guard let displayedMovies = displayedMovies else {return}
+        view?.setRows(with: displayedMovies)
     }
 }
 
@@ -57,12 +64,13 @@ extension MoviesListPresenter: MoviesListPresenterProtocol {
     
     func onViewDidLoad(view: MoviesListProtocol) {
         self.view = view
-        self.fetchedMovies = storage.getMovies()
-        sendViewData(fetchedMovies)
+        guard let allMovies = getMovies() else {return}
+        sendViewData(allMovies)
     }
     
-    func onDidSelect(index: Int) {
-        
+    func onDidSelect(section: Int, index: Int) {
+        guard let movie = displayedMovies?[section].movies[index] else {return}
+        router.show(movie: movie)
     }
     
     func didSearch(for text: String) {
@@ -71,13 +79,14 @@ extension MoviesListPresenter: MoviesListPresenterProtocol {
         
         // get sroted and categorized results
         guard let sortedMovies = getSortedResults(result) else {return}
-        
+        self.displayedMovies = sortedMovies
         // send handled search results to view
         view?.setRows(with: sortedMovies)
     }
     
     func didCancelSearch() {
-        guard let allMovies = self.allMovies else {return}
-        view?.setRows(with: allMovies)
+        self.displayedMovies = allMovies
+        guard let displayedMovies = self.displayedMovies else {return}
+        view?.setRows(with: displayedMovies)
     }
 }

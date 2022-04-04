@@ -11,6 +11,7 @@ class MoviesListView: UIView, ReusableView {
 
     
     private var movies: [MoviesCategories]?
+    weak var delegate: MoviesListDelegate?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -69,5 +70,9 @@ extension MoviesListView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         movies?[section].category
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.didSelect(indexPath)
     }
 }

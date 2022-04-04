@@ -10,7 +10,8 @@ import UIKit
 final class AppRouter {
     func setRootScreen(in window: UIWindow?) {
         let vc = MoviesListVC()
-        let presenter = MoviesListPresenter(storage: LocalDataReader())
+        let router = MoviesListRouter(vc: vc)
+        let presenter = MoviesListPresenter(storage: LocalDataReader(), router: router)
         vc.presenter = presenter
         let navVC = UINavigationController(rootViewController: vc)
         window?.rootViewController = navVC
