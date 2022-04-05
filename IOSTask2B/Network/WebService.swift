@@ -11,6 +11,7 @@ import Alamofire
 struct WebServices: WebServiceProtocol {
     private let networkProvider = APIClient()
     
+    // photos request from flicker
     func getPhotos(of movie: String, completion: @escaping (Result<FlickerPhotos, AFError>) -> Void) {
         let url = APIs.shared.getQueryUrl(for: movie)
         networkProvider.performRequest(url: url) { (result: Result<FlickerPhotos, AFError>) in

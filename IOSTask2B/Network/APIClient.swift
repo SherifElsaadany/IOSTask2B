@@ -9,6 +9,7 @@ import Foundation
 import Alamofire
 
 struct APIClient {
+    // generic function to make web service request
     func performRequest<T: Decodable>(url: String, completion: @escaping (Result<T, AFError>) -> Void) {
         
         guard let url = URL(string: url) else {return}

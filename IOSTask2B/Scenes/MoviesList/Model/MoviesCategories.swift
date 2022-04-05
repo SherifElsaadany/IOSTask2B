@@ -7,6 +7,7 @@
 
 import Foundation
 
+// object to map movies into categories
 struct MoviesCategories {
     var category: String
     var movies: [Movie]
