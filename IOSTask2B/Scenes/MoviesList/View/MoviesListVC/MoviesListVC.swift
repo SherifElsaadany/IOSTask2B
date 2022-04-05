@@ -16,9 +16,20 @@ class MoviesListVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "MOVIES"
         presenter?.onViewDidLoad(view: self)
         searchView.delegate = self
         moviesListView.delegate = self
+        configureNavigationBar()
+    }
+    
+    private func configureNavigationBar() {
+        navigationItem.backButtonTitle = ""
+        navigationController?.navigationBar.barTintColor = .darkGray
+        navigationController?.navigationBar.backgroundColor = .darkGray
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
 }
 

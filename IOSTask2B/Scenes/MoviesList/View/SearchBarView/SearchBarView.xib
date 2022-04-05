@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="2rz-dI-bYn">
+                <searchBar contentMode="redraw" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="2rz-dI-bYn">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>

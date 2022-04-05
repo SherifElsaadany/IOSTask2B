@@ -9,7 +9,7 @@ import Foundation
 
 class MoviesListPresenter {
     
-    weak var view: MoviesListProtocol?
+    private weak var view: MoviesListProtocol?
     private var storage: StorageHandlerProtocol
     private var allMovies: [MoviesCategories]?
     private var displayedMovies: [MoviesCategories]?

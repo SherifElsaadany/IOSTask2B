@@ -18,5 +18,9 @@ class MoviesListRouter {
 extension MoviesListRouter: MoviesListRoutingProtocol {
     func show(movie: Movie) {
         // TODO:- push movie details view controller
+        let vc = MovieDetailsVC()
+        let presenter = MovieDetailsPresenter(movie: movie, webService: WebServices())
+        vc.presenter = presenter
+        self.vc?.navigationController?.pushViewController(vc, animated: true)
     }
 }
