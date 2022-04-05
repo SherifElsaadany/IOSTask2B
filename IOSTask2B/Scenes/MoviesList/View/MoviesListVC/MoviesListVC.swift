@@ -23,6 +23,7 @@ class MoviesListVC: UIViewController {
         configureNavigationBar()
     }
     
+    // set navigation bar colors and remove title from back button
     private func configureNavigationBar() {
         navigationItem.backButtonTitle = ""
         navigationController?.navigationBar.barTintColor = .darkGray
@@ -35,6 +36,7 @@ class MoviesListVC: UIViewController {
 
 //MARK:- MoviesListProtocol
 extension MoviesListVC: MoviesListProtocol {
+    // recieve movies data from presenter and send it to list view
     func setRows(with movies: [MoviesCategories]) {
         moviesListView.updateList(with: movies)
     }
@@ -42,10 +44,12 @@ extension MoviesListVC: MoviesListProtocol {
 
 //MARK:- SearchViewDelegate
 extension MoviesListVC: SearchViewDelegate {
+    // inform presenter that search is canceled to resend the oiginal data
     func didCancelSearch() {
         presenter?.didCancelSearch()
     }
     
+    // send search query to presenter so it return the results
     func textDidChange(to text: String) {
         presenter?.didSearch(for: text)
     }
@@ -53,6 +57,7 @@ extension MoviesListVC: SearchViewDelegate {
 
 //MARK:- MoviesListDelegate
 extension MoviesListVC: MoviesListDelegate {
+    // inform presenter when user select a movie from a list to show details
     func didSelect(_ indexPath: IndexPath) {
         presenter?.onDidSelect(section: indexPath.section, index: indexPath.row)
     }

@@ -13,11 +13,13 @@ struct APIs {
     
     private init() {}
     
+    // create url contains the movie name for flicker api
     func getQueryUrl(for query: String) -> String {
         let urlStr = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&format=json&nojsoncallback=1&text=\(query)&page=1&per_page=10"
         return urlStr.addingPercentEncoding( withAllowedCharacters: NSCharacterSet.urlQueryAllowed) ?? ""
     }
     
+    // create photot url from photo object obtained by flicker to download photos
     func getPhotoUrl(_ photo: Photo) -> String? {
         guard
         let farm = photo.farm,

@@ -9,5 +9,6 @@ import Foundation
 import Alamofire
 
 protocol WebServiceProtocol {
+    // any web service class should have this function which used y the presenter
     func getPhotos(of movie: String, completion: @escaping (Result<FlickerPhotos, AFError>) -> Void)
 }
