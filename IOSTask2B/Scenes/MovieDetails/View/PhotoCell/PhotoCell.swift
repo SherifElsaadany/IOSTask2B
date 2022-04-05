@@ -12,9 +12,15 @@ class PhotoCell: UICollectionViewCell, ReusableView {
 
     @IBOutlet weak var imageView: UIImageView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        configureLayout()
+    }
+    
+    private func configureLayout() {
+        self.layer.cornerRadius = 15
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.black.cgColor
     }
     
     func configure(photoUrl: String?) {

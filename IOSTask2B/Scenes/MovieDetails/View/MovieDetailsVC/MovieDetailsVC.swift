@@ -15,6 +15,7 @@ class MovieDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "DETAILS"
         presenter?.onViewDidLoad(view: self)
     }
     

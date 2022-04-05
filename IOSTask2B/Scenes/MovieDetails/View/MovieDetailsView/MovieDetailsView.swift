@@ -12,6 +12,9 @@ class MovieDetailsView: UIView, ReusableView {
     private var movieDetails: MovieDetails?
     private var photos: [String]?
     
+    private let edgeInsets: CGFloat = 15
+    private let spaces: CGFloat = 10
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
     override init(frame: CGRect) {
@@ -51,11 +54,13 @@ class MovieDetailsView: UIView, ReusableView {
     func updateDetails(of details: MovieDetails) {
         self.movieDetails = details
         collectionView.reloadData()
+        collectionView.collectionViewLayout.invalidateLayout()
     }
     
     func updatePhotos(_ photos: [String]) {
         self.photos = photos
         collectionView.reloadData()
+        collectionView.collectionViewLayout.invalidateLayout()
     }
 }
 
@@ -88,20 +93,20 @@ extension MovieDetailsView: UICollectionViewDataSource, UICollectionViewDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.width / 2
+        let width = (collectionView.bounds.width - spaces - 2 * edgeInsets) / 2
         let height = width
         return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
+        return UIEdgeInsets(top: edgeInsets, left: edgeInsets, bottom: edgeInsets, right: edgeInsets)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        0
+        spaces
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        0
+        spaces
     }
 }

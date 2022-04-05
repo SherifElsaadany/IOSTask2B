@@ -65,6 +65,10 @@ extension MoviesListView: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         let movie = movies?[indexPath.section].movies[indexPath.row]
         cell.textLabel?.text = movie?.title
+        cell.textLabel?.textColor = .white
+        cell.textLabel?.numberOfLines = 0
+        cell.backgroundColor = .darkGray
+        cell.selectionStyle = .none
         return cell
     }
     

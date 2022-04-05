@@ -24,14 +24,25 @@ class MovieDetailsHeader: UICollectionReusableView, ReusableView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        configureLayout()
+    }
+    
     private func loadNib() {
         let viewFromXib = Bundle.main.loadNibNamed(Self.reuseIdentifier, owner: self, options: nil)![0] as! UIView
         viewFromXib.frame  = self.bounds
         addSubview(viewFromXib)
     }
     
+    private func configureLayout() {
+        self.contentView.layer.cornerRadius = 15
+        self.contentView.layer.borderWidth = 1
+        self.contentView.layer.borderColor = UIColor.black.cgColor
+    }
+    
     func getContentHeight() -> CGFloat {
-        return contentView.bounds.height + topAnchorConstraint.constant
+        return contentView.bounds.height + 2 * topAnchorConstraint.constant
     }
     
     func configureHeader(_ details: MovieDetails?) {
